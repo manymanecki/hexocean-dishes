@@ -1,0 +1,21 @@
+[
+  {
+    "name": "pizza",
+    "options": [
+      "no_of_slices",
+      "diameter"
+    ]
+  },
+  {
+    "name": "soup",
+    "options": [
+      "spiciness_scale"
+    ]
+  },
+  {
+    "name": "sandwich",
+    "options": [
+      "slices_of_bread"
+    ]
+  }
+]

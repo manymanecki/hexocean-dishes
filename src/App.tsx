@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 import {SubmitHandler, useForm} from "react-hook-form";
+import DishJSON from './Dish.json';
 import './App.css';
 
 interface IDish {
     name: String;
     options?: String[];
 }
+
+const dishes: IDish[] = DishJSON;
 
 interface IFormInput {
     dishName: String;
@@ -35,11 +38,13 @@ function App() {
                                className="text-center input input-bordered"></input>
                         <input {...register("dishDuration", { required: true })} placeholder="Preparation (Duration)"
                                className="text-center input input-bordered"></input>
-                        <select onChange={handleSelectChange} className="select select-bordered">
-                            <option value="" disabled selected hidden>Type:</option>
-                            <option value="pizza">Pizza</option>
-                            <option value="soup">Soup</option>
-                            <option value="sandwich">Sandwich</option>
+                        <select value={dishType} onChange={handleSelectChange} className="select select-bordered">
+                            <option value="" disabled selected hidden>Dish type?</option>
+                            {dishes.map((dish) => (
+                                <option key={dish.name.toString()} value={dish.name.toString()}>
+                                    {dish.name.toString()}
+                                </option>
+                            ))}
                         </select>
                         {
                             showOption ? <p>test!</p> : ""
