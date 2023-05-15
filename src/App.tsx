@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { SubmitHandler, useForm, useFieldArray } from "react-hook-form";
+import {Controller, SubmitHandler, useForm} from "react-hook-form";
 import DishConfig from './DishConfig.json';
 import './App.css';
 
-const dishes: Configuration[] = DishConfig;
+const dishConfig: Configuration[] = DishConfig;
 
 export interface IFormInput {
     name: string
@@ -21,14 +21,9 @@ export interface Option {
     type: string
 }
 
-
 function App() {
     const [ dishType, setDishType ] = useState("");
     const { register, handleSubmit, control } = useForm<IFormInput>();
-    const { fields, append, remove } = useFieldArray({
-        control,
-        name: "configuration.options"
-    });
 
     const onSubmit: SubmitHandler<IFormInput> = data => console.log(data);
     // let fetchAPI = fetch('https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/', {
@@ -45,12 +40,9 @@ function App() {
     //     })
     // });
 
-    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setDishType(e.target.value);
-        console.log(fields)
-    };
+    const selectedConfig = dishConfig.find(config => config.type === dishType) || { options: [] };
 
-    // const configurationOptions = dishes.find((dish) => dish.type === dishType) || [];
+    const onClick = console.log(selectedConfig)
 
     return <div className="App">
         <div className="flex h-screen justify-center items-center">
@@ -62,42 +54,35 @@ function App() {
                         <input {...register("preparation_time", { required: true })} type="text" placeholder="hh:mm:ss"
                                className="text-center input input-bordered">
                         </input>
-                        <select {...register("configuration.type", { required: true })} value={dishType} onChange={handleSelectChange}
+                        <select {...register("configuration.type", { required: true })} value={dishType} onChange={e => setDishType(e.target.value)}
                                 className="select select-bordered">
                             <option value="" disabled hidden>Dish type:</option>
-                            {dishes.map((dish) => (
-                                <option key={dish.type.toString()} value={dish.type.toString()}>
-                                    {dish.type.toString()}
+                            {dishConfig.map((dish, index) => (
+                                <option key={index} value={dish.type}>
+                                    {dish.type}
                                 </option>
                             ))}
                         </select>
-                        {fields.map((field, index) => (
-                            <div key={field.id}>
-                                <input
-                                    {...register(`configuration.options.${index}.name` as const, { required: true })}
-                                    type={`configuration.options.${index}.type`}
-                                    placeholder={`configuration.options.${index}.name`}
-                                    className="text-center input input-bordered"
-                                />
+                        {dishType && selectedConfig.options.map((option: Option, index: number) => (
+                            <div key={option.name}>
+                                {/*<Controller*/}
+                                {/*    name={`configuration.options.${index}.name`}*/}
+                                {/*    control={control}*/}
+                                {/*    rules={{ required: true }}*/}
+                                {/*    render={*/}
+                                {/*        ({ field }) => <input className="text-center input input-bordered" placeholder="Test" type={option.type} {...field} />*/}
+                                {/*    }*/}
+                                {/*/>*/}
+                                <input {...register("name", { required: true })} type={option.type} placeholder={option.name.replace(/_/g, ' ')}
+                                       className="text-center input input-bordered">
+                                </input>
                             </div>
                         ))}
-                        {/*{dishOptions.length > 0 && (*/}
-                        {/*    <>*/}
-                        {/*        {dishOptions.map((option) => (*/}
-                        {/*            <div key={option.toString()}>*/}
-                        {/*                <input*/}
-                        {/*                    type="number"*/}
-                        {/*                    step="any"*/}
-                        {/*                    className="text-center input input-bordered"*/}
-                        {/*                    id={option.toString()}*/}
-                        {/*                    name={option.toString()}*/}
-                        {/*                    placeholder={option.replace(/_/g, " ")}>*/}
-                        {/*                </input>*/}
-                        {/*            </div>*/}
-                        {/*        ))}*/}
-                        {/*    </>*/}
-                        {/*)}*/}
-                        <button className="btn" disabled={false}>Submit</button>
+                        <button className="btn" disabled={false} onClick={() => {
+                            console.log(selectedConfig.options);
+                        }}>
+                            Submit
+                        </button>
                     </div>
                 </form>
             </div>
