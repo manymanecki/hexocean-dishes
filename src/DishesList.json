@@ -2,20 +2,32 @@
   {
     "type": "Pizza",
     "options": [
-      "No_of_slices",
-      "Diameter"
+      {
+        "name": "No_of_slices",
+        "type": "number"
+      },
+      {
+        "name": "Diameter",
+        "type": "number"
+      }
     ]
   },
   {
     "type": "Soup",
     "options": [
-      "Spiciness_scale"
+      {
+        "name": "Spiciness_scale",
+        "type": "number"
+      }
     ]
   },
   {
     "type": "Sandwich",
     "options": [
-      "Slices_of_bread"
+      {
+        "name": "Slices_of_bread",
+        "type": "number"
+      }
     ]
   }
 ]
