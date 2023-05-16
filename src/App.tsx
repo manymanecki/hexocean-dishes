@@ -19,32 +19,35 @@ export interface Configuration {
 export interface Option {
     name: string
     type: string
+    value: any
 }
 
 function App() {
-    const [theme, setTheme] = useState('light');
     const [ dishType, setDishType ] = useState("");
     const { register, handleSubmit, formState } = useForm<IFormInput>();
 
-    const onSubmit: SubmitHandler<IFormInput> = data => console.log(data);
-    // let fetchAPI = fetch('https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({
-    //         'name': 'HexOcean pizza',
-    //         'preparation_time': '01:30:22',
-    //         'type': 'pizza',
-    //         'no_of_slices': 4,
-    //         'diameter': 33.4
-    //     })
-    // });
+    const onSubmit: SubmitHandler<IFormInput> = data =>
+    {
+        const obj = {
+            'name': data.name,
+            'preparation_time': data.preparation_time,
+            'type': data.configuration.type,
+        };
 
-    const toggleTheme = () => {
-        setTheme(theme === 'dark' ? 'light' : 'dark');
-        document.querySelector('html')!.setAttribute('data-theme', theme === 'dark' ? 'light' : 'dark');
-    };
+        data.configuration.options.forEach((element: {name: string, value: any }) => {
+            // @ts-ignore
+            obj[element.name] = element.value
+        })
+
+        return console.log(data)
+        // return fetch('https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(obj)
+        // });
+    }
 
     const selectedConfig = dishConfig.find(dish => dish.type === dishType) || { options: [] };
 
@@ -64,11 +67,16 @@ function App() {
                             ))}
                         </select>
                         {selectedConfig.options.map((option: Option, index: number) => (
-                            <div key={option.name}>
+                            <div key={index}>
                                 <input
-                                    {...register(`configuration.options.${index}.name`, { required: true })}
+                                    {...register(`configuration.options.${index}.value`, { required: true, valueAsNumber: true })}
                                     placeholder={option.name.replace(/_/g, ' ')}
-                                    type={option.type}
+                                    type="number"
+                                />
+                                <input
+                                    {...register(`configuration.options.${index}.name`)}
+                                    type="hidden"
+                                    value={option.name}
                                 />
                             </div>
                         ))}

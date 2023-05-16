@@ -4,11 +4,13 @@
     "options": [
       {
         "name": "No_of_slices",
-        "type": "number"
+        "type": "number",
+        "value": 0
       },
       {
         "name": "Diameter",
-        "type": "number"
+        "type": "number",
+        "value": 0
       }
     ]
   },
@@ -17,7 +19,8 @@
     "options": [
       {
         "name": "Spiciness_scale",
-        "type": "number"
+        "type": "number",
+        "value": 0
       }
     ]
   },
@@ -26,7 +29,8 @@
     "options": [
       {
         "name": "Slices_of_bread",
-        "type": "number"
+        "type": "number",
+        "value": 0
       }
     ]
   }
