@@ -24,16 +24,20 @@ export interface Option {
 
 function App() {
     const [ dishType, setDishType ] = useState("");
-    const { register, handleSubmit, formState } = useForm<IFormInput>();
+    const { register, unregister, handleSubmit, formState } = useForm<IFormInput>();
 
-    const onSubmit: SubmitHandler<IFormInput> = data =>
+    const onSwitch = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        unregister(`configuration.options`)
+        setDishType(e.target.value);
+    };
+
+    const onSubmit: SubmitHandler<IFormInput> = async data =>
     {
         const obj = {
             'name': data.name,
             'preparation_time': data.preparation_time,
             'type': data.configuration.type,
         };
-
         data.configuration.options.forEach((element: {name: string, value: any }) => {
             // @ts-ignore
             obj[element.name] = element.value
@@ -58,7 +62,7 @@ function App() {
                     <div className="grid grid-cols-1 gap-4 px-4 py-4 bg-base-200">
                         <input {...register("name", { required: true })} placeholder="Dish Name" autoComplete="off"></input>
                         <input {...register("preparation_time", { required: true })} type="text" placeholder="Preparation Time"></input>
-                        <select {...register("configuration.type", { required: true })} value={dishType} onChange={e => setDishType(e.target.value)}>
+                        <select {...register("configuration.type", { required: true })} value={dishType} onChange={onSwitch}>
                             <option value="" disabled hidden>Type:</option>
                             {dishConfig.map((dish, index) => (
                                 <option key={index} value={dish.type}>
@@ -67,9 +71,11 @@ function App() {
                             ))}
                         </select>
                         {selectedConfig.options.map((option: Option, index: number) => (
-                            <div key={index}>
+                            <div key={option.name}>
                                 <input
-                                    {...register(`configuration.options.${index}.value`, { required: true, valueAsNumber: true })}
+                                    {...register(`configuration.options.${index}.value`,
+                                        { required: true, valueAsNumber: (option.type === "number") })
+                                    }
                                     placeholder={option.name.replace(/_/g, ' ')}
                                     type="number"
                                 />

@@ -1,34 +1,34 @@
 [
   {
-    "type": "Pizza",
+    "type": "pizza",
     "options": [
       {
-        "name": "No_of_slices",
+        "name": "no_of_slices",
         "type": "number",
         "value": 0
       },
       {
-        "name": "Diameter",
+        "name": "diameter",
         "type": "number",
         "value": 0
       }
     ]
   },
   {
-    "type": "Soup",
+    "type": "soup",
     "options": [
       {
-        "name": "Spiciness_scale",
+        "name": "spiciness_scale",
         "type": "number",
         "value": 0
       }
     ]
   },
   {
-    "type": "Sandwich",
+    "type": "sandwich",
     "options": [
       {
-        "name": "Slices_of_bread",
+        "name": "slices_of_bread",
         "type": "number",
         "value": 0
       }
