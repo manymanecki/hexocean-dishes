@@ -22,6 +22,7 @@ export interface Option {
 }
 
 function App() {
+    const [theme, setTheme] = useState('light');
     const [ dishType, setDishType ] = useState("");
     const { register, handleSubmit, formState } = useForm<IFormInput>();
 
@@ -40,20 +41,21 @@ function App() {
     //     })
     // });
 
-    const selectedConfig = dishConfig.find(config => config.type === dishType) || { options: [] };
+    const toggleTheme = () => {
+        setTheme(theme === 'dark' ? 'light' : 'dark');
+        document.querySelector('html')!.setAttribute('data-theme', theme === 'dark' ? 'light' : 'dark');
+    };
+
+    const selectedConfig = dishConfig.find(dish => dish.type === dishType) || { options: [] };
 
     return <div className="App">
         <div className="flex h-screen justify-center items-center">
-            <div className="mockup-window bg-white bg-opacity-30 backdrop-blur-md drop-shadow-lg shadow-2xl">
-                <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="mockup-window">
+                <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
                     <div className="grid grid-cols-1 gap-4 px-4 py-4 bg-base-200">
-                        <input {...register("name", { required: true })} placeholder="Dish Name"
-                               className="text-center input input-bordered"></input>
-                        <input {...register("preparation_time", { required: true })} type="text" placeholder="Preparation Time"
-                               className="text-center input input-bordered">
-                        </input>
-                        <select {...register("configuration.type", { required: true })} value={dishType} onChange={e => setDishType(e.target.value)}
-                                className="select select-bordered">
+                        <input {...register("name", { required: true })} placeholder="Dish Name" autoComplete="off"></input>
+                        <input {...register("preparation_time", { required: true })} type="text" placeholder="Preparation Time"></input>
+                        <select {...register("configuration.type", { required: true })} value={dishType} onChange={e => setDishType(e.target.value)}>
                             <option value="" disabled hidden>Type:</option>
                             {dishConfig.map((dish, index) => (
                                 <option key={index} value={dish.type}>
@@ -65,13 +67,12 @@ function App() {
                             <div key={option.name}>
                                 <input
                                     {...register(`configuration.options.${index}.name`, { required: true })}
-                                    className="text-center input input-bordered"
                                     placeholder={option.name.replace(/_/g, ' ')}
                                     type={option.type}
                                 />
                             </div>
                         ))}
-                        <button className="btn" disabled={!formState.isValid}>
+                        <button className="btn " disabled={!formState.isValid}>
                             Submit
                         </button>
                     </div>
