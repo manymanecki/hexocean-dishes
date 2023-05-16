@@ -42,15 +42,19 @@ function App() {
             // @ts-ignore
             obj[element.name] = element.value
         })
-
-        return console.log(data)
-        // return fetch('https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(obj)
-        // });
+        try {
+            const response = await fetch('https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(obj)
+            });
+            const jsonData = await response.json();
+            console.log(jsonData);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     const selectedConfig = dishConfig.find(dish => dish.type === dishType) || { options: [] };
