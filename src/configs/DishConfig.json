@@ -5,12 +5,14 @@
       {
         "name": "no_of_slices",
         "type": "number",
-        "value": 0
+        "value": 0,
+        "required": false
       },
       {
         "name": "diameter",
         "type": "number",
-        "value": 0
+        "value": 0,
+        "required": false
       }
     ]
   },
@@ -20,7 +22,8 @@
       {
         "name": "spiciness_scale",
         "type": "number",
-        "value": 0
+        "value": 0,
+        "required": false
       }
     ]
   },
@@ -30,7 +33,19 @@
       {
         "name": "slices_of_bread",
         "type": "number",
-        "value": 0
+        "value": 0,
+        "required": true
+      }
+    ]
+  },
+  {
+    "type": "test type",
+    "options": [
+      {
+        "name": "test",
+        "type": "text",
+        "value": 0,
+        "required": true
       }
     ]
   }
