@@ -5,7 +5,7 @@ import { submitDish } from "./utils/submit";
 import DishConfig from "./configs/DishConfig.json";
 import Modal from "./components/Modal";
 import "./App.css";
-import { AxiosError, AxiosResponse } from "axios";
+import { AxiosError } from "axios";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -84,11 +84,11 @@ function App() {
           <input
             {...register("preparation_time", {
               required: true,
-              // pattern: {
-              //   value: /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/,
-              //   message:
-              //     "Invalid time format. Please enter in HH:MM:SS format.",
-              // },
+              pattern: {
+                value: /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/,
+                message:
+                  "Invalid time format. Please enter in HH:MM:SS format.",
+              },
               minLength: 8,
               maxLength: 8,
             })}
