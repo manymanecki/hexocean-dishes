@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/hexocean-dishes/static/css/main.e9107c97.css",
+    "main.js": "/hexocean-dishes/static/js/main.fefafa4a.js",
+    "index.html": "/hexocean-dishes/index.html",
+    "main.e9107c97.css.map": "/hexocean-dishes/static/css/main.e9107c97.css.map",
+    "main.fefafa4a.js.map": "/hexocean-dishes/static/js/main.fefafa4a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e9107c97.css",
+    "static/js/main.fefafa4a.js"
+  ]
+}
