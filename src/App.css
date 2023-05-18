@@ -3,7 +3,7 @@
 }
 
 body {
-    background: linear-gradient(-45deg, #1f005c, #5b0060, #870160, #ac255e, #ca485c, #e16b5c, #f39060, #ffb56b);
+    background: linear-gradient(-45deg, hsl(var(--p)), hsl(var(--pf)), hsl(var(--sf)), hsl(var(--s)));
     background-size: 200% 200%;
     animation: gradient 30s ease infinite;
     height: 100vh;
@@ -21,17 +21,17 @@ body {
     }
 }
 
-.modal {
-    position: absolute;
+.mockup-window {
+    @apply bg-neutral shadow-2xl
+}
+
+.input-error {
+    --tw-bg-opacity: 0.2;
+    background-color: hsl(var(--er) / var(--tw-bg-opacity));
 }
 
 input {
-    caret-color: transparent;
     @apply text-center input input-bordered hover:scale-105 focus:scale-105 ease-out duration-75 w-full
-}
-
-.mockup-window {
-    @apply bg-white bg-opacity-30 backdrop-blur-md drop-shadow-lg shadow-2xl
 }
 
 select {

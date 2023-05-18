@@ -1,15 +1,14 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import ApiConfig from "../configs/ApiConfig.json";
 
 export async function postDish(obj: any) {
   try {
-    const response = await axios.post(ApiConfig.apiUrl, obj, {
+    return await axios.post(ApiConfig.apiUrl, obj, {
       headers: {
         "Content-Type": "application/json",
       },
     });
-    return response.data;
   } catch (error: any) {
-    return error.response.data;
+    return error as AxiosError;
   }
 }

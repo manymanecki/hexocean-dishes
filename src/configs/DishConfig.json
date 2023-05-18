@@ -6,13 +6,13 @@
         "name": "no_of_slices",
         "type": "number",
         "value": 0,
-        "required": false
+        "required": true
       },
       {
         "name": "diameter",
         "type": "number",
         "value": 0,
-        "required": false
+        "required": true
       }
     ]
   },
@@ -23,7 +23,7 @@
         "name": "spiciness_scale",
         "type": "number",
         "value": 0,
-        "required": false
+        "required": true
       }
     ]
   },

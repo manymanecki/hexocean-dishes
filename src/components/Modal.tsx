@@ -10,7 +10,7 @@ const Modal: React.FC<ModalProps> = ({ setShowModal, message }) => {
     <>
       {setShowModal ? (
         <>
-          <div className="modal modal-open">
+          <div className="modal modal-bottom sm:modal-middle modal-open">
             <div className="modal-box relative">
               <label
                 onClick={() => setShowModal(false)}

@@ -53,13 +53,23 @@ added by configuring DishConfig.json in configs directory.
 
 Live preview is available under this link: (LINK)
 
+### Theming
+Theming is partially implemented, there is no direct interface (as that was not the point of the task), but due to
+the use of theme variable through the application, by changing the data-theme in index.html application can be styled.
+Some themes worth using include:
+- light
+- black
+- retro
+- cyberpunk
+- luxury
+
 ### Bonus checklist
 - [x] Git repository
 - [ ] Live preview
 - [x] Use of modern form library
 - [x] Proper validation handling
 - [x] TypeScript
-- [x] Good looking UI ( subjective 😉 )
+- [x] Good-looking UI ( subjective 😉 )
 
 ## Contact
 If you would like to get in touch with me, please write me an email at jakub.pawlowski00@gmail.com
