@@ -51,7 +51,7 @@ This project took me around a total of 8 hours of reading documentation, researc
 My main goal for this project was to make the form as scalable as possible, new types of dishes can be
 added by configuring DishConfig.json in configs directory.
 
-Live preview is available under this link: (LINK)
+Live preview is available under this link: https://manymanecki.github.io/hexocean-dishes/
 
 ### Theming
 Theming is partially implemented, there is no direct interface (as that was not the point of the task), but due to
@@ -65,7 +65,7 @@ Some themes worth using include:
 
 ### Bonus checklist
 - [x] Git repository
-- [ ] Live preview
+- [x] Live preview
 - [x] Use of modern form library
 - [x] Proper validation handling
 - [x] TypeScript
