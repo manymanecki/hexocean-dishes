@@ -32,26 +32,26 @@ function App() {
 
   const onSubmit = useCallback(
     async (data: IFormInput) => {
-      switchModal();
-      console.log(data);
-      switchLoading();
-      // try {
-      //   const result = await submitDish(data);
-      //   setMessage(JSON.stringify(result));
-      // } catch (error) {
-      //   setMessage(JSON.stringify(error));
-      //   console.log(error);
-      // } finally {
-      //   switchLoading();
-      //   switchModal();
-      // }
+      // switchModal();
+      // console.log(data);
+      // switchLoading();
+      try {
+        const result = await submitDish(data);
+        setMessage(JSON.stringify(result));
+      } catch (error) {
+        setMessage(JSON.stringify(error));
+        console.log(error);
+      } finally {
+        switchLoading();
+        switchModal();
+      }
     },
     [switchLoading, switchModal]
   );
 
   return (
     <div className="App">
-      <Modal showModal={showModal} />
+      {showModal && <Modal setShowModal={setShowModal} />}
       <div className="mockup-window">
         <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
           <div className="grid grid-cols-1 gap-4 px-4 py-4 bg-base-200">

@@ -1,17 +1,20 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 interface ModalProps {
-  showModal: boolean;
+  setShowModal: Dispatch<SetStateAction<boolean>>;
 }
 
-const Modal: React.FC<ModalProps> = ({ showModal }) => {
+const Modal: React.FC<ModalProps> = ({ setShowModal }) => {
   return (
     <>
-      {showModal ? (
+      {setShowModal ? (
         <>
           <div className="modal modal-open">
             <div className="modal-box relative">
-              <label className="btn btn-sm btn-circle absolute right-2 top-2">
+              <label
+                onClick={() => setShowModal(false)}
+                className="btn btn-sm btn-circle absolute right-2 top-2"
+              >
                 ✕
               </label>
               <h3 className="text-lg font-bold">
