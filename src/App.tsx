@@ -38,6 +38,7 @@ function App() {
       try {
         const result = await submitDish(data);
         setMessage(JSON.stringify(result));
+        console.log(result);
       } catch (error) {
         setMessage(JSON.stringify(error));
         console.log(error);
@@ -51,7 +52,7 @@ function App() {
 
   return (
     <div className="App">
-      {showModal && <Modal setShowModal={setShowModal} />}
+      {showModal && <Modal setShowModal={setShowModal} message={message} />}
       <div className="mockup-window">
         <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
           <div className="grid grid-cols-1 gap-4 px-4 py-4 bg-base-200">

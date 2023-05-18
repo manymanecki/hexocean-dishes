@@ -57,7 +57,7 @@ Live preview is available under this link: (LINK)
 - [x] Git repository
 - [ ] Live preview
 - [x] Use of modern form library
-- [ ] Proper validation handling
+- [x] Proper validation handling
 - [x] TypeScript
 - [x] Good looking UI ( subjective 😉 )
 
